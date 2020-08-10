@@ -4,6 +4,7 @@ const dogBar = document.getElementById("dog-bar")
 const dogInfo = document.getElementById("dog-info")
 const goodDogFilter = document.getElementById("good-dog-filter")
 let pupData = {}
+let filterGoodDogs = false
 
 
     const getDogs = () => {
@@ -74,12 +75,13 @@ let pupData = {}
     
 
     goodDogFilter.addEventListener("click", (e) => {
-        if(goodDogFilter.innerText ==="Filter good dogs: OFF"){
+        filterGoodDogs = !filterGoodDogs
+        if(filterGoodDogs === true){
             goodDogFilter.innerText = `Filter good dogs: ON`
             const goodDogs = pupData.filter(pup => pup.isGoodDog == true)
             document.querySelectorAll(".dog-span").forEach(ele => ele.remove())
             goodDogs.forEach(renderDogBar)
-        } else if (goodDogFilter.innerText ==="Filter good dogs: ON"){
+        } else if (filterGoodDogs === false){
             goodDogFilter.innerText = `Filter good dogs: OFF`
             document.querySelectorAll(".dog-span").forEach(ele => ele.remove())
             pupData.forEach(renderDogBar)
